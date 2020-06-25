@@ -1,10 +1,9 @@
-name: Build and test
+name: Continuous integration
 
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    branches:
+      - "*"
 
 jobs:
   build:
