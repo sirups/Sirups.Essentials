@@ -1,0 +1,28 @@
+name: Release
+
+on:
+  push:
+    branches: 
+      - release
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.101
+    - name: Install dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --configuration Release --no-restore
+    - name: Test
+      run: dotnet test --no-restore --verbosity normal
+    - name: Pack
+      run: dotnet pack --configuration Release --include-symbols --include-source
+    - name: Push
+      run: dotnet nuget push .\src\Sirups.Essentials.Mvc\bin\Release\Sirups.Essentials.Mvc*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{secrets.NUGET_APIKEY}}
