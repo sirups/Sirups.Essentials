@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <PackageId>Sirups.Essentials.Mvc</PackageId>
-    <Version>0.0.2</Version>
+    <Version>0.0.3</Version>
     <Authors>CoolMcGrrr</Authors>
     <Company>sirups.dk</Company>
     <RepositoryType>git</RepositoryType>
