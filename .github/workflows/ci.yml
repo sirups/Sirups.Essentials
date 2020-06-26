@@ -17,7 +17,7 @@ jobs:
       with:
         dotnet-version: 3.1.101
     - name: Install SonarCloud dependencies
-      run: apt-get update && apt-get install default-jre-headless -y
+      run: sudo apt-get update && sudo apt-get install default-jre-headless -y
     - name: Install SonarCloud dotnet
       run: dotnet tool install --global dotnet-sonarscanner
     - name: Start SonarCloud analysis
