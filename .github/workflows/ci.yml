@@ -29,4 +29,4 @@ jobs:
     - name: Test
       run: dotnet test --no-restore --verbosity normal
     - name: End SonarCloud analysis
-      run: dotnet sonarscanner end -d:sonar.login=${SONAR_KEY}
+      run: dotnet sonarscanner end -d:sonar.login=${{secrets.SONAR_KEY}}
