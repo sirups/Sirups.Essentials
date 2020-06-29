@@ -21,7 +21,7 @@ jobs:
     - name: Install SonarCloud dotnet
       run: dotnet tool install --global dotnet-sonarscanner
     - name: Start SonarCloud analysis
-      run: dotnet sonarscanner begin -k:Sirups.Essentials.Mvc -d:sonar.host.url="https://sonarcloud.io" -o:sirups -d:sonar.login=${{secrets.SONAR_KEY}}
+      run: dotnet sonarscanner begin -k:Sirups.Essentials.Mvc -d:sonar.host.url="https://sonarcloud.io" -o:sirups -d:sonar.login=${{secrets.SONAR_KEY}} -d:sonar.branch.name=${GITHUB_REF##*/}
     - name: Install dependencies
       run: dotnet restore
     - name: Build
