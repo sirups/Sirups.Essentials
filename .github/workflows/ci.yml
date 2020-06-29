@@ -29,7 +29,7 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release --no-restore
     - name: Test
-      run: dotnet test --no-restore --verbosity normal
+      run: dotnet test --no-restore --verbosity normal --collect:"XPlat Code Coverage" -r ./testresults
     - name: End SonarCloud analysis
       run: dotnet sonarscanner end -d:sonar.login=${{secrets.SONAR_KEY}}
       env:
