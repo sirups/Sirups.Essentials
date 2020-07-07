@@ -5,7 +5,7 @@ on:
     branches: 
       - release
 env:
-  releaseVersion: 0.0.$GITHUB_RUN_NUMBER
+  releaseVersion: 0.0
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -18,20 +18,20 @@ jobs:
     - name: Install dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --configuration Release --no-restore "/p:Version=${releaseVersion}"
+      run: dotnet build --configuration Release --no-restore "/p:Version=${releaseVersion}.${GITHUB_RUN_NUMBER}"
     - name: Test
       run: dotnet test --no-restore --verbosity normal
     - name: Pack
-      run: dotnet pack --configuration Release --include-symbols --include-source "/p:Version=${releaseVersion}"
+      run: dotnet pack --configuration Release --include-symbols --include-source "/p:Version=${releaseVersion}.${GITHUB_RUN_NUMBER}"
     - name: Push
       run: dotnet nuget push ./src/Sirups.Essentials.Mvc/bin/Release/Sirups.Essentials.Mvc*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{secrets.NUGET_APIKEY}}
     - name: Create a Release
       uses: actions/create-release@v1
       with:
         # The name of the tag. This should come from the webhook payload, `github.GITHUB_REF` when a user pushes a new tag
-        tag_name: ${releaseVersion}
+        tag_name: ${releaseVersion}.${GITHUB_RUN_NUMBER}
         # The name of the release. For example, `Release v1.0.1`
-        release_name: Release v${releaseVersion} 
+        release_name: Release v${releaseVersion}.${GITHUB_RUN_NUMBER}
         # Text describing the contents of the tag.
         #body:  # optional
         # Path to file with information about the tag.
