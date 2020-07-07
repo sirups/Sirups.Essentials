@@ -21,8 +21,8 @@ jobs:
       run: dotnet test --no-restore --verbosity normal
     - name: Pack
       run: dotnet pack --configuration Release --include-symbols --include-source --output out "/p:Version=${GITHUB_REF:11}.${GITHUB_RUN_NUMBER}"
-#    - name: Push
-#      run: dotnet nuget push ./out/Sirups.Essentials.Mvc*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{secrets.NUGET_APIKEY}}
+    - name: Push
+      run: dotnet nuget push ./out/Sirups.Essentials.Mvc.*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{secrets.NUGET_APIKEY}}
     - name: Normalize the artifact name.
       run: mv ./out/Sirups.Essentials.Mvc.${GITHUB_REF:11}.${GITHUB_RUN_NUMBER}.nupkg ./out/Sirups.Essentials.Mvc.nupkg
     - name: output info
