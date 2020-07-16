@@ -1,0 +1,9 @@
+path_classifiers:
+  test:
+    - "test/*"
+extraction:
+  csharp:
+    index:
+      solution: "Sirups.Essentials.Mvc.sln"
+      dotnet:
+        version: 3.1.301

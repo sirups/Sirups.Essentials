@@ -16,6 +16,7 @@ ProjectSection(SolutionItems) = preProject
 	README.md = README.md
 	.github\workflows\ci.yml = .github\workflows\ci.yml
 	.github\workflows\release.yml = .github\workflows\release.yml
+	lgtm.yml = lgtm.yml
 EndProjectSection
 EndProject
 Global
